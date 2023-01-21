@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>project dev live</title>
+</head>
+<body>
+{% block content %}
+<table>
+<thead>
+<tr>
+    <th>ID</th>
+    <th>TITLE</th>
+    <th>DESCRIPTION</th>
+</tr>
+</thead>
+
+<tbody>
+{% for project in projects  %}
+
+  <tr>
+    <td>{{ project.id }}</td>
+    <td>{{ project.title }}</td>
+    <td>{{ project.description }}</td>
+  </tr>
+
+{% endfor %}
+</tbody>
+</table>
+
+
+
+{% endblock %}
+</body>
+</html>
