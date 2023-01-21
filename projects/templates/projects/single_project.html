@@ -5,12 +5,25 @@
 {% block content %}
 <head>
     <meta charset="UTF-8">
-    <title>{{ project.title }}</title>
+
 </head>
 <body>
 
-<p> {{ project.description}}
+    <h1>{{project.title }}</h1>
+    {% for tag in project.tags.all %}
+        <span>{{ tag }}</span>
+    {% endfor %}
+    <hr>
+    <h1>Reviews</h1>
+
+    {% for review in project.review_set.all %}
+        <p> {{ review.body }}</p>
+        <p> {{ review.value }}</p>
+
+    {% endfor %}
+<p> {{project.description}}
 </p>
+
 
 {% endblock %}
 </body>
