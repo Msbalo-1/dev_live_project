@@ -10,6 +10,7 @@
 <table>
 <thead>
 <tr>
+    <th>ID</th>
     <th>TITLE</th>
     <th>DESCRIPTION</th>
 </tr>
@@ -19,8 +20,9 @@
 {% for project in projects  %}
 
   <tr>
-    <td><a href="{% url 'project' project.id %}">{{ project.title }}</a></td>
-    <td><a >{{ project.description }}</a></td>
+    <td>{{ project.id }}</td>
+    <td>{{ project.title }}</td>
+    <td>{{ project.description }}</td>
   </tr>
 
 {% endfor %}
