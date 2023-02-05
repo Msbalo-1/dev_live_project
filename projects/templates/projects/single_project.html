@@ -1,17 +1,21 @@
 {% extends 'main.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
 {% block content %}
-<head>
-    <meta charset="UTF-8">
-    <title>{{ project.title }}</title>
-</head>
-<body>
+    <h1>{{ project.title }}</h1>
+<hr>
+    {% for tag in project.tags.all %}
+        <span style="border: 1px solid black ; padding: 1em; background-color: yellowgreen">{{ tag }}</span>
 
-<p> {{ project.description}}
+    {% endfor %}
+<hr>
+    <p> {{ project.description}}
+    <hr>
 </p>
-
-{% endblock %}
-</body>
-</html>
+    {% for review in project.review_set.all %}
+        <P>{{ review }}</P>
+        <hr>
+        <P>{{ review.body }}</P>
+        <hr>
+        <P>{{ review.created }}</P>
+    {% endfor %}
+{% endblock content%}
