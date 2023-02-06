@@ -13,6 +13,8 @@
 {#    <th>ID</th>#}
     <th>TITLE</th>
     <th>DESCRIPTION</th>
+    <th></th>
+    <th></th>
 </tr>
 </thead>
 
@@ -20,9 +22,12 @@
 {% for project in projects  %}
 
   <tr>
-{#    <td>{{ project.id }}</td>#}
+
     <td><a href="{% url 'project' project.id %}">{{ project.title }}</a></td>
     <td>{{ project.description }}</td>
+    <td><a href="{% url 'update-project' project.id %}">Edit</a></td>
+    <td><a href="{% url 'delete-project' project.id %}">Delete</a></td>
+
   </tr>
 
 {% endfor %}
