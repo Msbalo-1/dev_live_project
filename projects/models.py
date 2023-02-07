@@ -18,13 +18,13 @@ class Project(models.Model):
     def __str__(self):
         return self.title
 
-    # @property
-    # def image_url(self):
-    #     try:
-    #         url = self.featured_image
-    #     except:
-    #         url = None
-    #     return url
+    @property
+    def image_url(self):
+        try:
+            img = self.featured_image.url
+        except:
+            img = ''
+        return img
 
 
 class Review(models.Model):
