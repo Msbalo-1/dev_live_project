@@ -1,5 +1,6 @@
 {% extends 'main.html' %}
 <!DOCTYPE html>
+{% load  static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,6 +8,7 @@
 </head>
 <body>
 {% block content %}
+    <img style="width: 200px;" src="{% static 'images/cat.jpg' %}"/>
 <table>
 <thead>
 <tr>

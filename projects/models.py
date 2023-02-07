@@ -6,7 +6,7 @@ class Project(models.Model):
      # owner=
     title = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True, max_length=200)
-    # futured_img
+    featured_image = models.ImageField(null=True, blank=True)
     demo_link = models.CharField(null=True, blank=True, max_length=1000)
     source_link = models.CharField(null=True, blank=True, max_length=1000)
     vote_total = models.IntegerField(default=0)
@@ -17,6 +17,14 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+
+    # @property
+    # def image_url(self):
+    #     try:
+    #         url = self.featured_image
+    #     except:
+    #         url = None
+    #     return url
 
 
 class Review(models.Model):
