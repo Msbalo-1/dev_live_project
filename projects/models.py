@@ -6,7 +6,7 @@ class Project(models.Model):
      # owner=
     title = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True, max_length=200)
-    featured_image = models.ImageField(null=True, blank=True)
+    featured_image = models.ImageField(null=True, blank=True, default='default.jpg')
     demo_link = models.CharField(null=True, blank=True, max_length=1000)
     source_link = models.CharField(null=True, blank=True, max_length=1000)
     vote_total = models.IntegerField(default=0)
