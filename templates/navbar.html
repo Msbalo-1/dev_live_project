@@ -1,23 +1,8 @@
-{#<!DOCTYPE html>#}
-{#<html lang="en">#}
-{#<head>#}
-{#    <meta charset="UTF-8">#}
-{#    <title>Title</title>#}
-{#</head>#}
-{#<body>#}
-{#<h1>logo</h1>#}
-{#<hr>#}
-{#<a href="{% url 'projects' %}">HOME</a>#}
-{#<a href="{% url 'create-project'  %}">Add project</a>#}
-{#</body>#}
-{#</html>#}
-
-
-
+{% load static %}
   <header class="header">
     <div class="container container--narrow">
       <a href="/" class="header__logo">
-        <img src="images/logo.svg" alt="DevSearch Logo" />
+        <img src="{% static 'images/logo.svg' %}" alt="DevSearch Logo" />
       </a>
       <nav class="header__nav">
         <input type="checkbox" id="responsive-menu" />
@@ -26,11 +11,12 @@
           <div class="toggle-menu__lines"></div>
         </label>
         <ul class="header__menu">
-          <li class="header__menuItem"><a href="index.html">Developers</a></li>
-          <li class="header__menuItem"><a href="projects.html">Projects</a></li>
-          <li class="header__menuItem"><a href="inbox.html">Inbox</a></li>
-          <li class="header__menuItem"><a href="account.html">My Account</a></li>
-          <li class="header__menuItem"><a href="login.html" class="btn btn--sub">Login/Sign Up</a></li>
+          <li class="header__menuItem"><a href="#">Developers</a></li>
+          <li class="header__menuItem"><a href="{% url 'projects' %}">Projects</a></li>
+          <li class="header__menuItem"><a href="#">Inbox</a></li>
+          <li class="header__menuItem"><a href="#">My Account</a></li>
+          <li class="header__menuItem"><a href="{% url 'create-project' %}" class="btn btn--sub">Add Project</a></li>
+{#          <li class="header__menuItem"><a href="#" class="btn btn--sub">Login/Sign Up</a></li>#}
         </ul>
       </nav>
     </div>
