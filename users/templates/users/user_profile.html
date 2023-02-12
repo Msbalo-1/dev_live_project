@@ -50,9 +50,7 @@
         <div class="column column--2of3">
           <div class="devInfo">
             <h3 class="devInfo__title">About Me</h3>
-            <p class="devInfo__about">
-                {{ profile.bio }}
-            </p>
+            <p class="devInfo__about">{{ profile.bio }}</p>
           </div>
 
           <div class="devInfo">
@@ -61,9 +59,7 @@
               {% for skill in TopSkills %}
               <div class="devSkill">
                 <h4 class="devSkill__title">{{ skill }}</h4>
-                <p class="devSkill__info">
-                    {{ skill.description}}
-                </p>
+                <p class="devSkill__info">{{ skill.description}}</p>
               </div>
               {% endfor %}
               <h3 class="devInfo__subtitle">Other Skills</h3>
@@ -88,7 +84,7 @@
                     <img class="project__thumbnail" src="{{ project.featured_image.url}}" alt="project thumbnail" />
                     <div class="card__body">
                       <h3 class="project__title">{{ project.title}}</h3>
-                      <p><a class="project__author" href="{% url 'user_profile' profile.id %}">BY {{ project.owner}}</a></p>
+                      <p><a class="project__author" href="{% url 'user_profile' profile.id %}">BY {{ project.owner.name}}</a></p>
                       <p class="project--rating">
                         <span style="font-weight: bold;">{{ project.vote_ratio }}%</span> Positive
                         Feedback ({{ project.vote_total}}Vote{{ project.vote_total|pluralize:'S' }})
