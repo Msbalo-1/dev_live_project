@@ -36,7 +36,7 @@ def loginUser(request):
 
 def logoutUser(request):
     logout(request)
-    messages.success(request, 'Successfully logout')
+    messages.info(request, 'Successfully logout')
     return redirect('login')
 
 

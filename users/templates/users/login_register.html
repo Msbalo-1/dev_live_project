@@ -21,7 +21,14 @@
               <div class="form__field">
                  <label for="formInput#text">{{ field.label }}: </label>
                  {{ field }}
+
+              {% for error in field.errors %}
+                  <P style="color: red">{{ error }}</P>
+              {% endfor %}
+
              </div>
+
+
              {% endfor %}
 
           <div class="auth__actions">
