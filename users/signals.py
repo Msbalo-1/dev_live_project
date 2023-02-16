@@ -36,7 +36,6 @@ def updatePfofile(sender, instance, created, **kwargs):
 
 
 
-
 # post_save.connect(createProfile, sender=User)
 # #
 # post_delete.connect(deleteUser, sender=Profile)

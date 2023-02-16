@@ -1,0 +1,35 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{#    <h1>ADD SKILLS</h1>#}
+{##}
+{#    <form method="POST" action="">#}
+{#    {% csrf_token %}#}
+{#        {{ form.as_p }}#}
+{#    <input type="submit" value="Save"/>#}
+{#    </form>#}
+
+
+     <main class="formPage my-xl">
+        <div class="content-box">
+            <div class="formWrapper">
+                <a class="backButton" href="{% url 'account' %}"><i class="im im-angle-left"></i></a>
+                <br>
+
+                <form method="POST" action="{% url 'add_skills' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <!-- Input:Text -->
+                    {% for field in form %}
+                    <div class="form__field">
+                        <label for="formInput#text">{{ field.label }} </label>
+                        {{ field }}
+                    </div>
+                    {% endfor %}
+                    <input class="btn btn--sub btn--lg  my-md" type="submit" value="Save" />
+                </form>
+            </div>
+        </div>
+    </main>
+
+{% endblock content %}

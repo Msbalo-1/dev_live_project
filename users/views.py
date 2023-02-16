@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import customUserCreationForm, profileForm
+from .forms import customUserCreationForm, profileForm, skillForm
 from django.contrib.auth.models import User
 from .models import Profile
 # Create your views here.
@@ -111,3 +111,20 @@ def editAccount(request):
     context = {'form': form}
 
     return render(request, 'users/profile_form.html', context)
+
+@login_required(login_url='login')
+def createSkill(request):
+    profile = request.user.profile
+    form = skillForm()
+
+    if request.method == 'POST':
+        form = skillForm(request.POST)
+        if form.is_valid():
+            skill = form.save(commit=False)
+            skill.owner = profile
+            skill.save()
+
+            return redirect('account')
+
+    context = {'form': form}
+    return render(request, 'users/skill_form.html', context)
