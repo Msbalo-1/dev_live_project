@@ -1,37 +1,6 @@
 {% extends 'main.html' %}
 
 {% block content %}
-{#    <img style="width: 200px;" src="{% static 'images/cat.jpg' %}"/>#}
-{#<table>#}
-{#<thead>#}
-{#<tr>#}
-{#    <th>ID</th>#}
-{#    <th>TITLE</th>#}
-{#    <th>DESCRIPTION</th>#}
-{#    <th></th>#}
-{#    <th></th>#}
-{#</tr>#}
-{#</thead>#}
-{##}
-{#<tbody>#}
-{#{% for project in projects  %}#}
-{##}
-{#  <tr>#}
-{##}
-{#    <td></td>#}
-{#    <td>{{ project.description }}</td>#}
-{#    <td><a href="{% url 'update-project' project.id %}">Edit</a></td>#}
-{#    <td><a href="{% url 'delete-project' project.id %}">Delete</a></td>#}
-{##}
-{#  </tr>#}
-{##}
-{#{% endfor %}#}
-{#</tbody>#}
-{#</table>#}
-
-
-
-
 
 <!-- Main Section -->
   <main class="projects">
@@ -42,11 +11,11 @@
         </div>
 
         <div class="hero-section__search">
-          <form class="form" action="#" method="get">
+          <form class="form" action="{% url 'projects' %}" method="get">
             <div class="form__field">
               <label for="formInput#search">Search By Projects </label>
-              <input class="input input--text" id="formInput#search" type="text" name="text"
-                placeholder="Search by Project Title" />
+              <input class="input input--text" id="formInput#search" type="text" name="search_query"
+                placeholder="Search by Project Title"  value="{{ search_query }}"/>
             </div>
 
             <input class="btn btn--sub btn--lg" type="submit" value="Search" />
