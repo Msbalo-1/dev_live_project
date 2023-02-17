@@ -34,7 +34,6 @@ def loginUser(request):
     return render(request, 'users/login_register.html')
 
 
-
 def logoutUser(request):
     logout(request)
     messages.info(request, 'Successfully logout')
@@ -66,9 +65,6 @@ def registerUser(request):
 
     context = {'page': page, 'form': form}
     return render(request, 'users/login_register.html', context)
-
-
-
 
 
 def profiles(request):
@@ -104,13 +100,14 @@ def editAccount(request):
         form = profileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
-
+            messages.success(request, 'Account Successfully Edited')
             return redirect('account')
 
 
     context = {'form': form}
 
     return render(request, 'users/profile_form.html', context)
+
 
 @login_required(login_url='login')
 def createSkill(request):
@@ -123,8 +120,36 @@ def createSkill(request):
             skill = form.save(commit=False)
             skill.owner = profile
             skill.save()
-
+            messages.success(request, 'Skill Successfully Created')
             return redirect('account')
 
     context = {'form': form}
     return render(request, 'users/skill_form.html', context)
+
+
+@login_required(login_url='login')
+def editSkill(request, pk):
+    profile = request.user.profile
+    skill = profile.skill_set.get(id=pk)
+    form = skillForm(instance=skill)
+
+    if request.method == 'POST':
+        form = skillForm(request.POST, instance=skill)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Skill Successfully Edited')
+            return redirect('account')
+    context = {'form': form}
+    return render(request, 'users/skill_form.html', context)
+
+
+@login_required(login_url='login')
+def deleteSkill(request, pk):
+    profile = request.user.profile
+    skill = profile.skill_set.get(id=pk)
+
+    if request.method == 'POST':
+        skill.delete()
+        messages.success(request, 'Project Successfully Deleted')
+        return redirect('account')
+    return render(request, 'projects/delete-project.html', {'object': skill})
