@@ -2,20 +2,25 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.contrib import messages
-from .utils import searchProject
+from .utils import searchProject, projectPaginator
 from .models import Project
 from .forms import ProjectForm
 
 def projects(request):
     projects, search_query = searchProject(request)
-    context = {'projects': projects, 'search_query': search_query}
+
+    custom_range, projects = projectPaginator(request, projects, 3)
+
+    context = {'projects': projects, 'search_query': search_query, 'custom_range': custom_range}
     return render(request, 'projects/project.html', context)
+
 
 def project(request, pk):
 
     projectobj = Project.objects.get(id=pk)
     context = {'project': projectobj}
     return render(request, 'projects/single_project.html', context)
+
 
 @login_required(login_url='login')
 def createProject(request):

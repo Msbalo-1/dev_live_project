@@ -5,7 +5,7 @@ from django.contrib import messages
 from .forms import customUserCreationForm, profileForm, skillForm
 from django.contrib.auth.models import User
 from .models import Profile
-from .utils import searchProfile
+from .utils import searchProfile, profilePaginator
 # Create your views here.
 
 
@@ -61,16 +61,15 @@ def registerUser(request):
 
         else:
             messages.error(request, 'An Error Occurred when Registering')
-
-
-
     context = {'page': page, 'form': form}
     return render(request, 'users/login_register.html', context)
 
 
 def profiles(request):
     profile, search_query = searchProfile(request)
-    context = {'profile': profile, 'search_query': search_query}
+    custom_range, profile = profilePaginator(request, profile, 3)
+
+    context = {'profile': profile, 'search_query': search_query, 'custom_range': custom_range, }
     return render(request, 'users/profiles.html', context)
 
 
