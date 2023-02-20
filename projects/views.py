@@ -4,21 +4,29 @@ from django.http import HttpResponse
 from django.contrib import messages
 from .utils import searchProject, projectPaginator
 from .models import Project
-from .forms import ProjectForm
+from .forms import ProjectForm, reviewForm
 
 def projects(request):
     projects, search_query = searchProject(request)
-
     custom_range, projects = projectPaginator(request, projects, 6)
-
     context = {'projects': projects, 'search_query': search_query, 'custom_range': custom_range}
     return render(request, 'projects/project.html', context)
 
 
 def project(request, pk):
-
     projectobj = Project.objects.get(id=pk)
-    context = {'project': projectobj}
+    form = reviewForm()
+    if request.method == 'POST':
+        form = reviewForm(request.POST)
+        review = form.save()
+        review.project = projectobj
+        review.owner = request.user.profile
+        review.save()
+        projectobj.getVoteCount
+        messages.success(request, 'Review was Submitted  Successfully ')
+        return redirect('project', pk=projectobj.id)
+
+    context = {'project': projectobj, 'form': form}
     return render(request, 'projects/single_project.html', context)
 
 

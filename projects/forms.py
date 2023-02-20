@@ -1,6 +1,6 @@
 import wtforms.widgets
 from django.forms import ModelForm
-from .models import Project
+from .models import Project, Review
 from django import forms
 
 
@@ -23,3 +23,21 @@ class ProjectForm(ModelForm):
 
         # self.fields['title'].widget.attrs.update({'class': 'input'})
 
+
+
+
+class reviewForm(ModelForm):
+    class Meta:
+        model = Review
+        fields = ['value', 'body']
+
+        labels = {
+            'value': 'Place your vote ',
+            'body': 'Add a comment with your vote'
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(reviewForm, self).__init__(*args, **kwargs)
+
+        for key, value in self.fields.items():
+            value.widget.attrs.update({'class': 'input'})
