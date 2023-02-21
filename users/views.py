@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import customUserCreationForm, profileForm, skillForm
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile, Message
 from .utils import searchProfile, profilePaginator
 # Create your views here.
 
@@ -16,7 +16,7 @@ def loginUser(request):
         return redirect('profiles')
 
     if request.method == 'POST':
-        username = request.POST['username'].lower()
+        username = request.POST['username']
         password = request.POST['password']
 
         try:
@@ -153,3 +153,12 @@ def deleteSkill(request, pk):
         messages.success(request, 'Project Successfully Deleted')
         return redirect('account')
     return render(request, 'projects/delete-project.html', {'object': skill})
+
+
+@login_required(login_url='login')
+def inbox(request):
+    profile = request.user.profile
+    messageRequests = profile.messages.all()
+    unreadRequest = messageRequests.filter(is_read=False).count()
+    context = {'messageRequests': messageRequests, 'unreadRequest': unreadRequest}
+    return render(request, 'users/inbox.html', context)
