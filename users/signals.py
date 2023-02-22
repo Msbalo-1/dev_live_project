@@ -4,6 +4,9 @@ from django.dispatch import receiver
 from django.contrib.auth.models import User
 from .models import Profile
 
+from django.core.mail import send_mail
+from django.conf import settings
+
 #
 @receiver(post_save, sender=User)
 def createProfile(sender, instance, created, **kwargs):
@@ -16,6 +19,18 @@ def createProfile(sender, instance, created, **kwargs):
             name=user.first_name
 
         )
+
+        subject = 'Welcome to Dev_search_live '
+        message = "Welcome to Dev_search_live. Your new account comes with access to communicate, and show case your Project and meet new developers and other services."
+
+        send_mail(
+            subject,
+            message,
+            settings.EMAIL_HOST_USER,
+            ['mustaphabalogun860@gmail.com'],
+            fail_silently=False,
+        )
+
 
 @receiver(post_delete, sender=Profile)
 def deleteUser(sender, instance, **kwargs):
