@@ -10,8 +10,12 @@
       <h3 class="inbox__title">New Messages(<span>{{ unreadRequest }}</span>)</h3>
       <ul class="messages">
         {% for message in messageRequests %}
+        {% if message.is_read == False %}
         <li class="message message--unread">
-          <a href="message.html">
+        {% else %}
+            <li class="message">
+        {% endif %}
+          <a href="{% url 'messages' message.id %}">
             <span class="message__author">{{ message.name }}</span>
             <span class="message__subject">{{ message.subject }}</span>
             <span class="message__date">{{ message.created }}</span>

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import customUserCreationForm, profileForm, skillForm
+from .forms import customUserCreationForm, profileForm, skillForm, messageForm
 from django.contrib.auth.models import User
 from .models import Profile, Message
 from .utils import searchProfile, profilePaginator
@@ -162,3 +162,51 @@ def inbox(request):
     unreadRequest = messageRequests.filter(is_read=False).count()
     context = {'messageRequests': messageRequests, 'unreadRequest': unreadRequest}
     return render(request, 'users/inbox.html', context)
+
+
+@login_required(login_url='login')
+def messageRecived(requset, pk):
+
+    profile = requset.user.profile
+    # sender = profile
+    message = profile.messages.get(id=pk)
+
+    if message.is_read == False:
+        message.is_read = True
+        message.save()
+    context = {'message': message}
+    return render(requset, 'users/messages.html', context)
+
+
+
+
+def createMessage(request, pk):
+    recipient = Profile.objects.get(id=pk)
+    form = messageForm()
+    try:
+        sender = request.user.profile
+    except:
+        sender = None
+
+    if request.method == 'POST':
+        form = messageForm(request.POST)
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.sender = sender
+            message.recipient = recipient
+
+            if sender:
+                message.name = sender.name
+                message.email = sender.email
+
+            message.save()
+            messages.success(request, 'Your Message was Successfully Sent')
+            return redirect('user_profile', pk=recipient.id)
+
+
+
+    context = {'recipient': recipient, 'form': form}
+    return render(request, 'users/messages_form.html', context)
+
+
+
