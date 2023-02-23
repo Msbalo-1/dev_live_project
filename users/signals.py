@@ -21,13 +21,16 @@ def createProfile(sender, instance, created, **kwargs):
         )
 
         subject = 'Welcome to Dev_search_live '
-        message = "Welcome to Dev_search_live. Your new account comes with access to communicate, and show case your Project and meet new developers and other services."
+        message = "Welcome to Dev_search_live. " \
+                  "Your new account comes with access to communicate, " \
+                  "and show case your Project and meet new developers " \
+                  "and other services."
 
         send_mail(
             subject,
             message,
             settings.EMAIL_HOST_USER,
-            ['mustaphabalogun860@gmail.com'],
+            [profile.email],
             fail_silently=False,
         )
 
