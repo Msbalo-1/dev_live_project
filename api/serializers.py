@@ -13,7 +13,6 @@ class profileSerializers(serializers.ModelSerializer):
 
 
 class reviewSerializers(serializers.ModelSerializer):
-    # owner = profileSerializers(many=False)
     class Meta:
         model = Review
         fields = '__all__'
