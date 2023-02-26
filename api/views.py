@@ -45,13 +45,13 @@ def projectVote(request, pk):
     user = request.user.profile
     data = request.data
 
-    review, created = Review.objects.get_or_create(
-        owner=user,
-        project=project,
-    )
-    review.value = data['value']
-    review.save()
-    project.getVoteCount
+    # review, created = Review.objects.get_or_create(
+    #     owner=user,
+    #     project=project,
+    # )
+    # review.value = data['value']
+    # review.save()
+    # project.getVoteCount
 
     serializer = projectSerializers(project, many=False)
     return Response(serializer.data)
