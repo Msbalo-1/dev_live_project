@@ -55,3 +55,7 @@ def projectVote(request, pk):
 
     serializer = projectSerializers(project, many=False)
     return Response(serializer.data)
+
+
+
+
