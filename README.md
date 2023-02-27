@@ -1,7 +1,7 @@
 # dev_live_project
 
 # Installation
-* 1 - clone repo https://github.com/Msbalo-1/dev_live_project
+* 1 - clone repo https://github.com/Msbalo-1/dev_live_project.git
 * 2 - create a virtual environment and activate
 *  - pip install virtualenv
 *  - virtualenv envname
