@@ -26,7 +26,7 @@ SECRET_KEY = 'dwspo2g1(rxt7h^a+fva9!)m=o8=t2kmul@$!)=n%@_bi7s$k4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -127,28 +127,28 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'dev_live_project.wsgi.application'
 
-
+#
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         #'ENGINE': 'django.db.backends.sqlite3',
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'railway',
-#         'USER': 'postgres',
-#         'PASSWORD': 'AgkK367xvHmigMtG0jsa',
-#         'HOST': 'containers-us-west-127.railway.app',
-#         'PORT': '6026',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': '9nwmV1H6800A3Bqtl8Ej',
+        'HOST': 'containers-us-west-62.railway.app',
+        'PORT': '7535',
+    }
+}
 
 
 
@@ -191,7 +191,7 @@ USE_TZ = True
 # EMAIL_USE_TLS = False
 # # EMAIL_USE_SSL = True
 # EMAIL_HOST_USER = 'coordinatorsister@gmail.com'
-# EMAIL_HOST_PASSWORD = 'sistercordinator44'
+# EMAIL_HOST_PASSWORD = ''
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
