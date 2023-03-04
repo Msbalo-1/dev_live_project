@@ -1,5 +1,7 @@
 asgiref==3.6.0
+ cloudinary==1.32.0
 Django==3.2.17
+django-cloudinary-storage==0.3.0
 django-cors-headers==3.14.0
 django-filter==22.1
 djangorestframework==3.14.0
