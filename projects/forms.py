@@ -1,4 +1,3 @@
-import wtforms.widgets
 from django.forms import ModelForm
 from .models import Project, Review
 from django import forms

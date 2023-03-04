@@ -146,7 +146,7 @@ WSGI_APPLICATION = 'dev_live_project.wsgi.application'
 DATABASES = {
     'default': {
 
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'railway',
         'USER': 'postgres',
         'PASSWORD': '9nwmV1H6800A3Bqtl8Ej',
