@@ -13,7 +13,6 @@ import os.path
 from pathlib import Path
 from datetime import timedelta
 
-
 import cloudinary_storage
 import cloudinary
 
@@ -219,19 +218,18 @@ DEFAULT_FROM_EMAIL = 'coordinatorsister@gmail.com'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
-MEDIA_URL = '/images/'
+# STATIC_URL = '/static/'
+# MEDIA_URL = '/images/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
     # os.path.join(BASE_DIR, 'static')
 ]
 
-MEDIA_ROOT = BASE_DIR / 'static/images'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+# MEDIA_ROOT = BASE_DIR / 'static/images'
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'djr9cft1t',
