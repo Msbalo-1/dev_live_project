@@ -131,6 +131,9 @@ WSGI_APPLICATION = 'dev_live_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+
+
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
@@ -138,10 +141,12 @@ WSGI_APPLICATION = 'dev_live_project.wsgi.application'
 #     }
 # }
 
+
+
 DATABASES = {
     'default': {
 
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'railway',
         'USER': 'postgres',
         'PASSWORD': '9nwmV1H6800A3Bqtl8Ej',
